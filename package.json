@@ -1,0 +1,12 @@
+{
+  "name": "video-clipper",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local web app to download a selected time range from a video URL.",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
