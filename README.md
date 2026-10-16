@@ -82,5 +82,5 @@ The app limits one clip to 4 hours by default in `server.js`.
 
 ## License
 
-**dhirajbhoi-ops **
+**dhirajbhoi-ops**
 
