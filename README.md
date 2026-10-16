@@ -13,10 +13,10 @@ Use this only for videos you own or have permission to download.
 
 ## Run
 
-If you are using this from Codex, run:
+If you are using this from terminal , run:
 
 ```bat
-start-codex-node.bat
+start-ops-node.bat
 ```
 
 Or, if Node.js is installed normally:
@@ -80,4 +80,7 @@ The app limits one clip to 4 hours by default in `server.js`.
 
 - GitHub: https://github.com/dhirajbhoi-ops
 
-<!-- ## License -->
+## License
+
+**dhirajbhoi-ops **
+
