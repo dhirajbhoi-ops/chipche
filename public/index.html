@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ClipChé</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <main class="shell">
+      <section class="workspace" aria-label="Video clip downloader">
+        <div class="mast">
+          <div>
+            <p class="eyebrow">clipché</p>
+            <h1>Paste a video URL, pick the part you need, download only that clip.</h1>
+          </div>
+          <div class="status-pill" id="toolStatus">Ready</div>
+        </div>
+
+        <form id="clipForm" class="clip-form">
+          <div class="url-row">
+            <label class="field full">
+              <span>Video URL</span>
+              <input id="url" name="url" type="url" placeholder="https://www.youtube.com/watch?v=..." required>
+            </label>
+            <label class="field duration-field">
+              <span>Video length</span>
+              <input id="duration" inputmode="numeric" placeholder="Fetched automatically">
+            </label>
+          </div>
+
+          <button class="secondary" id="fetchInfo" type="button">
+            <span>Get Video Details</span>
+          </button>
+
+          <section class="video-card is-empty" id="videoCard" aria-live="polite">
+            <div class="thumb" id="videoThumb">
+              <iframe id="videoPreview" title="Video preview" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+            <div class="video-copy">
+              <p class="mini-label">Video details</p>
+              <h2 id="videoTitle">Paste a URL to preview the video</h2>
+              <p id="videoMeta">Click Get Video Details to read the real duration.</p>
+            </div>
+          </section>
+
+          <section class="clip-lab" aria-label="Clip range preview">
+            <div class="clip-lab-head">
+              <div>
+                <p class="mini-label">Selected clip</p>
+                <strong id="clipSummary">Waiting for duration</strong>
+              </div>
+              <div class="clip-length" id="clipLength">--</div>
+            </div>
+
+            <div class="timeline" id="timeline">
+              <div class="timeline-ticks" aria-hidden="true"></div>
+              <div class="range-fill" id="rangeFill"></div>
+              <div class="range-handle start" id="startHandle">
+                <span id="startBubble">00:00:00</span>
+              </div>
+              <div class="range-handle end" id="endHandle">
+                <span id="endBubble">02:00:00</span>
+              </div>
+            </div>
+
+            <div class="scrubbers">
+              <label>
+                <span>Move start</span>
+                <input id="startRange" type="range" min="0" max="3600" step="60" value="0" disabled>
+              </label>
+              <label>
+                <span>Move end</span>
+                <input id="endRange" type="range" min="0" max="3600" step="60" value="600" disabled>
+              </label>
+            </div>
+          </section>
+
+          <div class="time-grid">
+            <label class="field">
+              <span>Start time</span>
+              <input id="start" name="start" inputmode="numeric" placeholder="00:00:00" value="00:00:00" required>
+            </label>
+
+            <label class="field">
+              <span>End time</span>
+              <input id="end" name="end" inputmode="numeric" placeholder="00:10:00" value="00:10:00" required>
+            </label>
+          </div>
+
+          <div class="quick-row" aria-label="Quick clip lengths">
+            <button type="button" data-jump="900">15 min</button>
+            <button type="button" data-jump="3600">1 hr</button>
+            <button type="button" data-jump="7200">2 hrs</button>
+            <button type="button" data-jump="10800">3 hrs</button>
+          </div>
+
+          <fieldset class="quality">
+            <legend>Output</legend>
+            <label>
+              <input type="radio" name="quality" value="small" checked>
+              <span>MP4 720p smaller</span>
+            </label>
+            <label>
+              <input type="radio" name="quality" value="medium">
+              <span>MP4 1080p balanced</span>
+            </label>
+            <label>
+              <input type="radio" name="quality" value="best">
+              <span>Best MP4 available</span>
+            </label>
+          </fieldset>
+
+          <button class="primary" type="submit">
+            <span class="button-icon" aria-hidden="true"></span>
+            <span>Start Clip Download</span>
+          </button>
+        </form>
+
+        <section class="progress" aria-live="polite">
+          <div class="progress-head">
+            <h2>Progress</h2>
+            <a id="downloadLink" class="download hidden" href="#">Download file</a>
+          </div>
+          <pre id="log">Paste a URL. If it is YouTube, preview appears immediately. Click Get Video Details to load the real length.</pre>
+        </section>
+      </section>
+
+      <aside class="notes">
+        <div class="meter-ring" aria-hidden="true">
+          <span id="ringValue">--</span>
+        </div>
+        <h2>Before You Run It</h2>
+        <p>This local app uses <strong>yt-dlp</strong> and <strong>ffmpeg</strong> on your computer. It is for videos you have permission to download.</p>
+        <ol>
+          <li>Install yt-dlp and ffmpeg.</li>
+          <li>Run <code>start-codex-node.bat</code> or <code>npm start</code>.</li>
+        </ol>
+        <p class="hint">The app no longer guesses the length. It uses the real duration from <code>yt-dlp</code>, or a length you type manually.</p>
+      </aside>
+    </main>
+    <script src="/app.js"></script>
+  </body>
+</html>
